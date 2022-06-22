@@ -1,0 +1,33 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-integration
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-integration', version: '2.7.0'
+
+    // https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-ftp
+    implementation group: 'org.springframework.integration', name: 'spring-integration-ftp', version: '5.5.12'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

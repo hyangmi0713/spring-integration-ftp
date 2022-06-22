@@ -1,5 +1,6 @@
 package com.example.springintegrationftp;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.annotation.MessagingGateway;
@@ -20,13 +21,17 @@ import java.util.List;
 //https://medium.com/nerd-for-tech/retrieving-files-from-ftp-server-using-spring-integration-5ccc4a972eaf
 @Configuration
 public class FTPConfiguration {
+    // Program arguments : --cmd.password=1234
+    @Value("${cmd.password}")
+    public String password;
+
     @Bean
     public DefaultFtpSessionFactory sf() {
         DefaultFtpSessionFactory sf = new DefaultFtpSessionFactory();
         sf.setHost("192.168.35.210");
         sf.setPort(21);
         sf.setUsername("ckbs");
-        sf.setPassword("1111");
+        sf.setPassword(password);
         return sf;
     }
 
